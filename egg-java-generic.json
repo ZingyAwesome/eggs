@@ -1,0 +1,43 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1",
+        "update_url": null
+    },
+    "exported_at": "2021-10-29T13:28:20+01:00",
+    "name": "Java Generic",
+    "author": "zingy@zingyawesome.com",
+    "description": "A generic egg for Java.",
+    "features": null,
+    "images": [
+        "ghcr.io\/parkervcp\/yolks:java_8",
+        "ghcr.io\/parkervcp\/yolks:java_11",
+        "ghcr.io\/parkervcp\/yolks:java_16"
+    ],
+    "file_denylist": [],
+    "startup": "java -Xmx{{SERVER_MEMORY}}M -Dterminal.jline=false -Dterminal.ansi=true -jar {{JAR_FILE}}",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Finished Loading!\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# Java Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nPROJECT=java\r\napt update\r\napt install -y curl jq\r\ncd \/mnt\/server",
+            "container": "debian:bullseye-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Startup file",
+            "description": "The jar that starts the server.",
+            "env_variable": "JAR_FILE",
+            "default_value": "server.jar",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string"
+        }
+    ]
+}

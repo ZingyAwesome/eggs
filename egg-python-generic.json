@@ -1,0 +1,53 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1",
+        "update_url": null
+    },
+    "exported_at": "2021-10-29T12:48:17+01:00",
+    "name": "Python Generic",
+    "author": "zingy@zingyawesome.com",
+    "description": "A generic egg for Python.",
+    "features": null,
+    "images": [
+        "docker.io\/zincxx\/pyjava:9",
+        "ghcr.io\/parkervcp\/yolks:python_3.10",
+        "ghcr.io\/parkervcp\/yolks:python_3.9",
+        "ghcr.io\/parkervcp\/yolks:python_3.8"
+    ],
+    "file_denylist": [],
+    "startup": "\/usr\/local\/bin\/python \/home\/container\/{{STARTUP_FILE}} {{EXTRA_ARGS}}",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": [\r\n        \"Running on http\",\r\n        \"is ready.\"\r\n    ]\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# Python Bot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\napt update\r\napt install -y libtool\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\necho -e \"Install complete.\"\r\nexit 0",
+            "container": "python3.9-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Startup file",
+            "description": "The file that starts the server.",
+            "env_variable": "STARTUP_FILE",
+            "default_value": "main.py",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string"
+        },
+        {
+            "name": "Extra Arguments",
+            "description": "Any extra arguments to pass after the file.",
+            "env_variable": "EXTRA_ARGS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:50"
+        }
+    ]
+}
