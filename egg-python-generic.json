@@ -26,7 +26,7 @@
     "scripts": {
         "installation": {
             "script": "#!\/bin\/bash\r\n# Python Bot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\napt update\r\napt install -y libtool\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\necho -e \"Install complete.\"\r\nexit 0",
-            "container": "python3.9-slim",
+            "container": "python:3.9-slim",
             "entrypoint": "bash"
         }
     },
