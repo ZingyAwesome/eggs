@@ -10,6 +10,7 @@
     "description": "A generic egg for Java.",
     "features": null,
     "images": [
+        "ghcr.io\/parkervcp\/yolks:java_17",
         "ghcr.io\/parkervcp\/yolks:java_8",
         "ghcr.io\/parkervcp\/yolks:java_11",
         "ghcr.io\/parkervcp\/yolks:java_16"
