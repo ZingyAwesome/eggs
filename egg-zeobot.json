@@ -1,42 +1,45 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
-        "version": "PTDL_v1",
+        "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2021-10-29T13:19:10+01:00",
+    "exported_at": "2022-11-20T19:50:55+01:00",
     "name": "ZeoBot",
-    "author": "zingy@zingyawesome.com",
+    "author": "development@zingyawesome.com",
     "description": "An egg for ZeoBot - The multipurpose Discord bot.\r\n\r\nFor further support, check https:\/\/docs.zingyawesome.com\/installation\/ or join our Discord and create a ticket.",
     "features": null,
-    "images": [
-        "docker.io\/zincxx\/pyjava:9",
-        "ghcr.io\/parkervcp\/yolks:python_3.9"
-    ],
+    "docker_images": {
+        "ghcr.io\/0zinc\/pyjava:3.10": "ghcr.io\/0zinc\/pyjava:3.10",
+        "ghcr.io\/parkervcp\/yolks:python_3.10": "ghcr.io\/parkervcp\/yolks:python_3.10",
+        "ghcr.io\/0zinc\/pyjava:3.9": "ghcr.io\/0zinc\/pyjava:3.9",
+        "ghcr.io\/parkervcp\/yolks:python_3.9": "ghcr.io\/parkervcp\/yolks:python_3.9"
+    },
     "file_denylist": [],
     "startup": "\/usr\/local\/bin\/python \/home\/container\/{{BOT_FILE}} {{EXTRA_ARGS}}",
     "config": {
-        "files": "{\r\n    \".\/settings.yml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"music_port:\": \"music_port: '{{server.build.default.port}}'\"\r\n        }\r\n    }\r\n}",
-        "startup": "{\r\n    \"done\": \"ZeoBot is ready.\"\r\n}",
+        "files": "{\r\n    \".\/settings.yml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"  port: 2333\": \"  port: {{server.build.default.port}}\",\r\n            \"music_port: \": \"music_port: '{{server.build.default.port}}'\"\r\n        }\r\n    },\r\n    \".\/core\/music_server\/application.yml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"  port: 2333\": \"  port: {{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": [\r\n        \"ZeoBot has been loaded\",\r\n        \"ZeoBot is ready.\"\r\n    ]\r\n}",
         "logs": "{}",
-        "stop": "^C"
+        "stop": "stop"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# WARNING: NOT RECOMMENDED TO MODIFY THIS SCRIPT\r\n#\r\n# ZeoBot Installation Script\r\napt update\r\napt install -y libtool\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\necho -e \"[ZeoBot] Server installation has been completed.\"\r\necho -e \"[ZeoBot] Upload the ZeoBot files to the server and proceed with configuration.\"\r\nexit 0",
-            "container": "python:3.9-slim",
+            "script": "#!\/bin\/bash\r\n# WARNING: NOT RECOMMENDED TO MODIFY THIS SCRIPT\r\n#\r\n# ZeoBot Installation Script\r\napt update\r\napt install -y libtool\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\necho -e \"[ZeoBot] Server installation has been completed.\"\r\necho -e \"[ZeoBot] Upload the ZeoBot files to the server and proceed with configuration.\"\r\nexit 0",
+            "container": "python:3.10-slim",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
             "name": "Main Bot File",
-            "description": "The bot's main file to start.",
+            "description": "The .py file that starts the bot.",
             "env_variable": "BOT_FILE",
             "default_value": "main.py",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string"
+            "rules": "required|string",
+            "field_type": "text"
         },
         {
             "name": "Extra Arguments",
@@ -45,7 +48,8 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:50"
+            "rules": "nullable|string|max:50",
+            "field_type": "text"
         }
     ]
 }

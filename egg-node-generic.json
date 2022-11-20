@@ -4,21 +4,18 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-11-20T19:54:21+01:00",
-    "name": "Python Generic",
+    "exported_at": "2022-11-20T19:49:29+01:00",
+    "name": "Node Generic",
     "author": "development@zingyawesome.com",
-    "description": "A generic egg for Python.",
+    "description": "A generic egg for Node.js.",
     "features": null,
     "docker_images": {
-        "ghcr.io\/0zinc\/pyjava:3.11": "ghcr.io\/0zinc\/pyjava:3.11",
-        "ghcr.io\/parkervcp\/yolks:python_3.11": "ghcr.io\/parkervcp\/yolks:python_3.11",
-        "ghcr.io\/0zinc\/pyjava:3.10": "ghcr.io\/0zinc\/pyjava:3.10",
-        "ghcr.io\/parkervcp\/yolks:python_3.10": "ghcr.io\/parkervcp\/yolks:python_3.10",
-        "ghcr.io\/0zinc\/pyjava:3.9": "ghcr.io\/0zinc\/pyjava:3.9",
-        "ghcr.io\/parkervcp\/yolks:python_3.9": "ghcr.io\/parkervcp\/yolks:python_3.9"
+        "ghcr.io\/parkervcp\/yolks:nodejs_18": "ghcr.io\/parkervcp\/yolks:nodejs_18",
+        "ghcr.io\/parkervcp\/yolks:nodejs_16": "ghcr.io\/parkervcp\/yolks:nodejs_16",
+        "ghcr.io\/parkervcp\/yolks:nodejs_14": "ghcr.io\/parkervcp\/yolks:nodejs_14"
     },
     "file_denylist": [],
-    "startup": "\/usr\/local\/bin\/python \/home\/container\/{{STARTUP_FILE}} {{EXTRA_ARGS}}",
+    "startup": "if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm install; fi; \/usr\/local\/bin\/node \/home\/container\/{{STARTUP_FILE}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": [\r\n        \"Running on http\",\r\n        \"is ready.\",\r\n        \"has been loaded.\"\r\n    ]\r\n}",
@@ -27,17 +24,17 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# Python Bot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\napt update\r\napt install -y libtool\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\necho -e \"Install complete.\"\r\nexit 0",
-            "container": "python:3.11-slim",
+            "script": "#!\/bin\/bash\r\n# NodeJS Bot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\napt update\r\napt install -y git make gcc g++ python python-dev libtool\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\necho -e \"install complete\"\r\nexit 0",
+            "container": "node:18-buster-slim",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
             "name": "Startup File",
-            "description": "The .py file that starts the server.",
+            "description": "The .js file that starts the server.",
             "env_variable": "STARTUP_FILE",
-            "default_value": "main.py",
+            "default_value": "index.js",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
