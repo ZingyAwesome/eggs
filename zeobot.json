@@ -10,9 +10,9 @@
     "description": "An egg for ZeoBot - The multipurpose Discord bot.\r\n\r\nFor further support, check https:\/\/docs.zingyawesome.com\/installation\/ or join our Discord and create a ticket.",
     "features": null,
     "docker_images": {
-        "ghcr.io\/0zinc\/pyjava:3.10": "ghcr.io\/0zinc\/pyjava:3.10",
+        "ghcr.io\/zingyawesome\/pyjava:3.10": "ghcr.io\/zingyawesome\/pyjava:3.10",
         "ghcr.io\/parkervcp\/yolks:python_3.10": "ghcr.io\/parkervcp\/yolks:python_3.10",
-        "ghcr.io\/0zinc\/pyjava:3.9": "ghcr.io\/0zinc\/pyjava:3.9",
+        "ghcr.io\/zingyawesome\/pyjava:3.9": "ghcr.io\/zingyawesome\/pyjava:3.9",
         "ghcr.io\/parkervcp\/yolks:python_3.9": "ghcr.io\/parkervcp\/yolks:python_3.9"
     },
     "file_denylist": [],
