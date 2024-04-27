@@ -2,7 +2,7 @@
 A collection of eggs that I personally use, uploaded to GitHub for convenience. 
 
 Included eggs:
-  - Python Generic (3.9, 3.10, 3.11)
-  - ZeoBot
-  - Java Generic (8, 11, 16)
-  - Node Generic (18, 16,)
+- Java Generic (21, 17, 11)
+- Node Generic (20, 18)
+- Python Generic (3.12, 3.11, 3.10)
+- ZeoBot
