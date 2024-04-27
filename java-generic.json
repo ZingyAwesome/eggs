@@ -4,18 +4,19 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-11-20T19:39:10+01:00",
+    "exported_at": "2024-04-27T23:05:50+01:00",
     "name": "Java Generic",
     "author": "development@zingyawesome.com",
     "description": "A generic egg for Java.",
     "features": null,
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:java_17": "ghcr.io\/parkervcp\/yolks:java_17",
-        "ghcr.io\/parkervcp\/yolks:java_11": "ghcr.io\/parkervcp\/yolks:java_11",
-        "ghcr.io\/parkervcp\/yolks:java_8": "ghcr.io\/parkervcp\/yolks:java_8"
+        "Java 21, Python 3.12": "ghcr.io\/zingyawesome\/pyjava:3.12-21",
+        "Java 21": "ghcr.io\/parkervcp\/yolks:java_21",
+        "Java 17": "ghcr.io\/parkervcp\/yolks:java_17",
+        "Java 11": "ghcr.io\/parkervcp\/yolks:java_11"
     },
     "file_denylist": [],
-    "startup": "java -Xmx{{SERVER_MEMORY}}M -Dterminal.jline=false -Dterminal.ansi=true -jar {{JAR_FILE}}",
+    "startup": "java -Xmx{{SERVER_MEMORY}}M -Dterminal.jline=false -Dterminal.ansi=true -jar {{JAR_FILE}} {{EXTRA_ARGS}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": [\r\n        \"Running on http\",\r\n        \"is ready.\",\r\n        \"has been loaded.\",\r\n        \"Finished Loading!\"\r\n    ]\r\n}",
@@ -24,9 +25,9 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# Java Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nPROJECT=java\r\napt update\r\napt install -y curl jq\r\ncd \/mnt\/server",
-            "container": "debian:bullseye-slim",
-            "entrypoint": "bash"
+            "script": "#!\/bin\/sh\r\n# Installation Script\r\n\r\necho -e \"Server installation has been completed.\"\r\nexit 0",
+            "container": "alpine",
+            "entrypoint": "sh"
         }
     },
     "variables": [
@@ -38,6 +39,16 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Extra Arguments",
+            "description": "Any extra arguments to pass after the file.",
+            "env_variable": "EXTRA_ARGS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:50",
             "field_type": "text"
         }
     ]

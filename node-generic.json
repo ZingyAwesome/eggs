@@ -4,18 +4,17 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-11-20T19:49:29+01:00",
+    "exported_at": "2024-04-27T22:41:56+01:00",
     "name": "Node Generic",
     "author": "development@zingyawesome.com",
     "description": "A generic egg for Node.js.",
     "features": null,
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:nodejs_18": "ghcr.io\/parkervcp\/yolks:nodejs_18",
-        "ghcr.io\/parkervcp\/yolks:nodejs_16": "ghcr.io\/parkervcp\/yolks:nodejs_16",
-        "ghcr.io\/parkervcp\/yolks:nodejs_14": "ghcr.io\/parkervcp\/yolks:nodejs_14"
+        "Node 20": "ghcr.io\/parkervcp\/yolks:nodejs_20",
+        "Node 18": "ghcr.io\/parkervcp\/yolks:nodejs_18"
     },
     "file_denylist": [],
-    "startup": "if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm install; fi; \/usr\/local\/bin\/node \/home\/container\/{{STARTUP_FILE}}",
+    "startup": "if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm install; fi; \/usr\/local\/bin\/node \/home\/container\/{{STARTUP_FILE}} {{EXTRA_ARGS}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": [\r\n        \"Running on http\",\r\n        \"is ready.\",\r\n        \"has been loaded.\"\r\n    ]\r\n}",
@@ -24,9 +23,9 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# NodeJS Bot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\napt update\r\napt install -y git make gcc g++ python python-dev libtool\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\necho -e \"install complete\"\r\nexit 0",
-            "container": "node:18-buster-slim",
-            "entrypoint": "bash"
+            "script": "#!\/bin\/sh\r\n# Installation Script\r\n\r\necho -e \"Server installation has been completed.\"\r\nexit 0",
+            "container": "alpine",
+            "entrypoint": "sh"
         }
     },
     "variables": [

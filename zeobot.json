@@ -4,16 +4,16 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-11-20T19:50:55+01:00",
+    "exported_at": "2024-04-27T22:42:04+01:00",
     "name": "ZeoBot",
     "author": "development@zingyawesome.com",
     "description": "An egg for ZeoBot - The multipurpose Discord bot.\r\n\r\nFor further support, check https:\/\/docs.zingyawesome.com\/installation\/ or join our Discord and create a ticket.",
     "features": null,
     "docker_images": {
-        "ghcr.io\/zingyawesome\/pyjava:3.10": "ghcr.io\/zingyawesome\/pyjava:3.10",
-        "ghcr.io\/parkervcp\/yolks:python_3.10": "ghcr.io\/parkervcp\/yolks:python_3.10",
-        "ghcr.io\/zingyawesome\/pyjava:3.9": "ghcr.io\/zingyawesome\/pyjava:3.9",
-        "ghcr.io\/parkervcp\/yolks:python_3.9": "ghcr.io\/parkervcp\/yolks:python_3.9"
+        "Python 3.10, Java 11": "ghcr.io\/zingyawesome\/pyjava:3.10",
+        "Python 3.10": "ghcr.io\/parkervcp\/yolks:python_3.10",
+        "Python 3.9, Java 11": "ghcr.io\/zingyawesome\/pyjava:3.9",
+        "Python 3.9": "ghcr.io\/parkervcp\/yolks:python_3.9"
     },
     "file_denylist": [],
     "startup": "\/usr\/local\/bin\/python \/home\/container\/{{BOT_FILE}} {{EXTRA_ARGS}}",
@@ -25,9 +25,9 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# WARNING: NOT RECOMMENDED TO MODIFY THIS SCRIPT\r\n#\r\n# ZeoBot Installation Script\r\napt update\r\napt install -y libtool\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\necho -e \"[ZeoBot] Server installation has been completed.\"\r\necho -e \"[ZeoBot] Upload the ZeoBot files to the server and proceed with configuration.\"\r\nexit 0",
-            "container": "python:3.10-slim",
-            "entrypoint": "bash"
+            "script": "#!\/bin\/sh\r\n# ZeoBot Installation Script\r\n\r\necho -e \"[ZeoBot] Server installation has been completed.\"\r\necho -e \"[ZeoBot] Upload the ZeoBot files to the server and proceed with configuration.\"\r\nexit 0",
+            "container": "alpine",
+            "entrypoint": "sh"
         }
     },
     "variables": [
